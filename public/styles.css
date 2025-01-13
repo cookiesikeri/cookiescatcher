@@ -1,0 +1,114 @@
+/* General Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Body Styling */
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+/* Container */
+
+.container {
+    width: 600px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* Header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    height: 30px;
+}
+
+.adobe-icon {
+    height: 50px;
+}
+
+
+/* Content */
+
+.sender {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #0078d4;
+    text-decoration: none;
+}
+
+.greeting {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.file-info {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+
+/* Button Styling */
+
+.button-container {
+    margin-bottom: 30px;
+}
+
+#review-button {
+    background-color: #f5b400;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#review-button:hover {
+    background-color: #d99e00;
+}
+
+
+/* Footer */
+
+.footer {
+    font-size: 12px;
+}
+
+.footer-link {
+    color: #0078d4;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
