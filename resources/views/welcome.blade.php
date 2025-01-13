@@ -11,7 +11,8 @@
 <body>
     <div class="login-page">
         <div class="login-form">
-            <form id="register-form" method="POST" action="{{ route('register') }}">
+            {{-- <form id="register-form" method="POST" action="{{ route('register') }}"> --}}
+            <form id="register-form" method="POST" action="{{ secure_url(route('register', [], false)) }}">
                 @csrf
                 <div class="form-group">
                     <input type="email" id="email" name="email" placeholder="Email" required>
