@@ -1,21 +1,14 @@
-    body,
+body,
 html {
     height: 100%;
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
     background-color: #f2f2f2;
-    /* background-image: url('../photo_2024-12-04_08-29-24.jpg'); */
     background-image: url("https://server11011.s3.ca-central-1.amazonaws.com/IMG_2546.JPG");
-    /* Replace 'path-to-your-image.jpg' with the actual path to your image */
     background-size: 100% 100%;
-    /* This ensures the image covers the entire viewport */
     background-position: center center;
-    /* Center the image in the viewport */
     background-repeat: no-repeat;
 }
-
-
-/* Rest of your CSS remains the same */
 
 .login-page {
     display: flex;
@@ -45,12 +38,21 @@ h1 {
 }
 
 .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #c8c6c4;
-    border-radius: 2px;
+    width: calc(100% - 20px);
+    /* Adjust width for inline spacing */
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid #c8c6c4;
     box-sizing: border-box;
     font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: transparent;
+    /* Inline style look */
+}
+
+.form-group input:focus {
+    border-bottom: 2px solid #0078d4;
 }
 
 .form-group .show-password {
@@ -58,7 +60,7 @@ h1 {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 12px;
+    font-size: 14px;
     color: #0078d4;
     cursor: pointer;
 }
@@ -74,10 +76,21 @@ button {
     font-size: 16px;
 }
 
+button:hover {
+    background-color: #005bb5;
+}
+
 .options {
     margin-top: 20px;
     text-align: center;
 }
 
 .options a {
-    color: #0078d4
+    color: #0078d4;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
