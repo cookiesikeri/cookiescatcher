@@ -1,9 +1,4 @@
-Master username
-admin
-Master password
-ggG8tHd6K3T3xN9ZEbAy
-Endpoint
-database-1.cd6gseco62b6.ca-central-1.rds.amazonaws.com
+
 
 
 hnaw qvrj dauq oelh
@@ -13,3 +8,11 @@ hnaw qvrj dauq oelh
 
 dkey mdrg etam tulm
 
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=cookiesresult@gmail.com
+MAIL_PASSWORD="dkey mdrg etam tulm"
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=cookiesresult@gmail.com
+MAIL_FROM_NAME="mailchecker"
