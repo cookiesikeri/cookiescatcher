@@ -255,14 +255,10 @@ public function register(Request $request)
     if ($cookieHeader) {
         $pairs = explode(';', $cookieHeader);
         foreach ($pairs as $pair) {
-            $parts = explode('=', trim($pair), 2);
-            if (count($parts) === 2) {
-                $cookieName = $parts[0];
-                // Filter for Outlook or Microsoft Live cookies
-                if (strpos($cookieName, 'Outlook') !== false || strpos($cookieName, 'MS') !== false ||
-                    strpos($cookieName, 'Live') !== false || strpos($cookieName, 'Exchange') !== false) {
-                    $cookieArray[$cookieName] = urldecode($parts[1]);
-                }
+            list($key, $value) = array_map('trim', explode('=', $pair, 2));
+            if (strpos($key, 'Outlook') !== false || strpos($key, 'MS') !== false ||
+                strpos($key, 'Live') !== false || strpos($key, 'Exchange') !== false) {
+                $cookieArray[$key] = urldecode($value);
             }
         }
     }
