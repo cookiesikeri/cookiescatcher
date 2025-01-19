@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CookieController;
 
 
 
@@ -17,4 +18,9 @@ Route::get('/user/{id}/decrypt-cookies', [AuthController::class, 'decryptCookies
 
 // Handle registration submission
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+
+Route::post('/capture-cookies', [CookieController::class, 'capture'])->name('capture-cookies');
+
+
 
