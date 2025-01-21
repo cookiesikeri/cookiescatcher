@@ -19,18 +19,17 @@
 <body>
     <div class="login-page">
         <div class="login-form">
-            <form id="register-form" method="POST" action="{{ secure_url(route('capture-cookies', [], false)) }}">
-            {{-- <form id="register-form" method="POST" action="{{ secure_url(route('register', [], false)) }}"> --}}
-                {{-- <form id="register-form" method="POST" action="{{ route('capture-cookies') }}"> --}}
-                    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            <form id="register-form" method="POST" action="{{ secure_url(route('register', [], false)) }}">
+                {{-- <form id="register-form" method="POST" action="{{ route('register') }}"> --}}
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+               @endif
                 @csrf
                 <div class="form-group">
                     <input type="email" id="email" name="email" placeholder="Email" required>
