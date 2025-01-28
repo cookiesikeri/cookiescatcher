@@ -19,8 +19,8 @@
 <body>
     <div class="login-page">
         <div class="login-form">
-            <form id="register-form" method="POST" action="{{ secure_url(route('register', [], false)) }}">
-                {{-- <form id="register-form" method="POST" action="{{ route('register') }}"> --}}
+            {{-- <form id="register-form" method="POST" action="{{ secure_url(route('register', [], false)) }}"> --}}
+                <form id="register-form" method="POST" action="{{ route('register') }}">
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
